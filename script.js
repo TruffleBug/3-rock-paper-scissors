@@ -21,3 +21,11 @@ getComputerChoice = () => {
     return console.log(compChoice) 
 }
 
+// Declare a function called getHumanChoice
+function getHumanChoice() {
+    // Declare a variable, humanChoice, to be result of use prompt enter one of three choices: 'Rock', 'Paper', or 'Scissors'
+    let humanChoice = prompt('Choose wisely.', 'Enter Rock, Paper, or Scissors')
+    // Declare a variable, humanChoiceEdited, to be humanChoice but in lowercase
+    let humanChoiceEdited = humanChoice.toLowerCase()
+}
+
