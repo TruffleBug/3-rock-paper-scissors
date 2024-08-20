@@ -68,11 +68,11 @@ function playGame() {
         console.log(`Computer Score: ${computerScore}`)
     }
     if (humanScore > computerScore) {
-        return console.log('YOU\'RE A WINNER!')
+        return alert('YOU\'RE A WINNER!')
     } else if (humanScore < computerScore) {
-        return console.log('YOU LOST')
+        return alert('YOU LOST')
     } else {
-        return console.log ('IT\'S A TIE')
+        return alert ('IT\'S A TIE')
     }
 }
 
