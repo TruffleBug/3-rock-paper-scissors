@@ -18,7 +18,6 @@ function getComputerChoice () {
         compChoice = 'scissors';
     }
     // Return compChoice
-    console.log(compChoice)
     return compChoice 
 }
 
@@ -26,8 +25,15 @@ function getComputerChoice () {
 function getHumanChoice() {
     // Declare a variable, humanChoice, to be result of use prompt enter one of three choices: 'Rock', 'Paper', or 'Scissors'
     let humanChoice = prompt('Choose wisely.', 'Enter Rock, Paper, or Scissors')
-    // return humanChoice in all lowercase
-    return humanChoice.toLowerCase()
+    if (humanChoice.toLowerCase() === 'rock' ||
+        humanChoice.toLowerCase() === 'paper' ||
+        humanChoice.toLowerCase() === 'scissors') {
+            // return humanChoice in all lowercase
+            return humanChoice.toLowerCase();
+    } else {
+        alert('Try again')
+        getHumanChoice()
+    }
 }
 
 // Declare a function, playRound
@@ -62,10 +68,12 @@ let computerScore = 0;
 
 // Declare a function, playGame
 function playGame() {
-    for (let i=0; i<6; i++) {
+    for (let i=1; i<6; i++) {
         playRound()    
-        console.log(`Human Score: ${humanScore}`);
-        console.log(`Computer Score: ${computerScore}`)
+        console.log(`
+        Human Score: ${humanScore}
+        Computer Score: ${computerScore}
+        ---------------`)
     }
     if (humanScore > computerScore) {
         return alert('YOU\'RE A WINNER!')
