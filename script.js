@@ -4,15 +4,15 @@ let computerScore = 0;
 
 function getComputerChoice () {
     let randomNum = Math.random();
-    let compChoice = '';
+    let computerChoice = '';
     if (randomNum >=0 && randomNum<0.34) {
-        compChoice = 'rock';
+        computerChoice = 'rock';
     } else if (randomNum >= 0.34 && randomNum <0.67) {
-        compChoice = 'paper';        
+        computerChoice = 'paper';        
     } else {
-        compChoice = 'scissors';
+        computerChoice = 'scissors';
     }
-    return compChoice 
+    return computerChoice 
 }
 
 // function getHumanChoice() {
@@ -28,43 +28,54 @@ function getComputerChoice () {
             // }
             
 function playRound() {
-    compChoice = getComputerChoice();
+    computerChoice = getComputerChoice();
     // humanChoice = getHumanChoice();
-    if (humanChoice === 'rock' && compChoice === 'scissors' ||
-        humanChoice === 'paper' && compChoice === 'rock' ||
-        humanChoice === 'scissors' && compChoice === 'paper') {
+    if (humanChoice === 'rock' && computerChoice === 'scissors' ||
+        humanChoice === 'paper' && computerChoice === 'rock' ||
+        humanChoice === 'scissors' && computerChoice === 'paper') {
             ++humanScore;
             console.log(`Human Score: ${humanScore}, Computer Score: ${computerScore}`)
-            resultMsg.textContent = `You win :D ${humanChoice} beats ${compChoice}`;
-            // return console.log(`You win :D ${humanChoice} beats ${compChoice}`)
-    } else if (humanChoice === compChoice) {
+            console.log(computerChoice)
+            resultMsg.textContent = `You win :D ${humanChoice} beats ${computerChoice}`;
+    } else if (humanChoice === computerChoice) {
         console.log(`Human Score: ${humanScore}, Computer Score: ${computerScore}`)
+        console.log(computerChoice)
         resultMsg.textContent = `It\'s a tie!`
-        // return console.log('It\'s a tie!')
     } else {
         ++computerScore;
         console.log(`Human Score: ${humanScore}, Computer Score: ${computerScore}`)
-        resultMsg.textContent = `You lose :( ${compChoice} beats ${humanChoice}`
-        // return console.log(`You lose :( ${compChoice} beats ${humanChoice}`)
+        console.log(computerChoice)
+        resultMsg.textContent = `You lose :( ${computerChoice} beats ${humanChoice}`
+    }
+    scoreTracker()
+}
+
+function scoreTracker() {
+    results.textContent = `Human Score: ${humanScore}, Computer Score: ${computerScore}`
+    if (humanScore === 5 || computerScore === 5) {
+        if (humanScore > computerScore) {
+            alert('YOU WIN!');
+        } else if (humanScore < computerScore) {
+            alert('YOU LOSE');
+        } else {
+            alert ('IT\'S A TIE');
+        }
+        location.reload();
     }
 }
 
-function playGame() {
-    for (let i=1; i<6; i++) {
-        // playRound()    
-        // console.log(`
-        // Human Score: ${humanScore}
-        // Computer Score: ${computerScore}
-        // ---------------`)
-    }
-    if (humanScore > computerScore) {
-        return alert('YOU\'RE A WINNER!')
-    } else if (humanScore < computerScore) {
-        return alert('YOU LOST')
-    } else {
-        return alert ('IT\'S A TIE')
-    }
-}
+// function playGame() {
+//     // for (let i=1; i<6; i++) {
+//         getHumanChoice()
+//     // }
+//         // if (humanScore > computerScore) {
+//         //     return alert('YOU\'RE A WINNER!')
+//         // } else if (humanScore < computerScore) {
+//         //     return alert('YOU LOST')
+//         // } else {
+//         //     return alert ('IT\'S A TIE')
+//         // }
+// }
 
 const buttonRock = document.querySelector('#buttonRock');
 buttonRock.addEventListener('click', () => {
@@ -88,10 +99,8 @@ const resultsContainer = document.querySelector('div');
 
 const resultMsg = document.createElement('p');
 resultsContainer.appendChild(resultMsg);
+resultMsg.style.color = 'blue';
 
 const results = document.createElement('p');
-results.textContent = `Human Score: ${humanScore}, Computer Score: ${computerScore}`;
 resultsContainer.appendChild(results);
-
-// document.addEventListener('load', playGame);
-playGame()
+results.style.fontWeight = 'bold'
